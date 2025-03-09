@@ -14,21 +14,7 @@ const schema = a.schema({
     .handler(
       a.handler.custom({
         entry: "./bedrock.js",
-        dataSource: "bedrockDS",
-        // You can add instructions for formatting here in the resolver configuration
-        requestMapping: {
-          template: {
-            question: '$ctx.args.question',
-            formatInstructions: `
-              Please format your response with:
-              - Clear paragraph breaks between sections
-              - Bullet points for listing details
-              - Numbers clearly highlighted
-              - Section headers where appropriate
-              - Any technical specifications in a structured format
-            `
-          }
-        }
+        dataSource: "bedrockDS"
       })
     ),
 });
