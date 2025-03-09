@@ -3,14 +3,16 @@ import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 const schema = a.schema({
     BedrockResponse: a.customType({
         body: a.string().required(),
-        error: a.string().nullable(),
+        error: a.string(), // Remove .nullable()
     }),
 
     askPalmetto: a
         .query()
         .arguments({ question: a.string().required() })
         .returns(a.ref('BedrockResponse'))
-        .authorization([])
+        .authorization((allow) => [
+            allow.publicApiKey(), // Use publicApiKey instead of empty array
+        ])
         .handler(a.handler.custom({
             entry: "bedrock.js",
             dataSource: "bedrockDS"
