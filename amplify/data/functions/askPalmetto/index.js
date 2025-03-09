@@ -1,4 +1,5 @@
-exports.handler = async (event) => {
+// amplify/data/functions/askPalmetto/index.js
+export async function handler(event) {
     try {
         const question = event.arguments.question;
 
@@ -12,4 +13,4 @@ exports.handler = async (event) => {
             error: error.message
         };
     }
-};
+}

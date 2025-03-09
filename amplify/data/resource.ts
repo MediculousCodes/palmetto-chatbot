@@ -12,13 +12,8 @@ const schema = a.schema({
             question: a.string().required()
         })
         .returns(a.ref('BedrockResponse'))
-        .authorization((allow) => [
-            allow.publicApiKey()  // Changed from public() to publicApiKey()
-        ])
-        .handler(a.handler.custom({  // Changed from function() to handler()
-            entry: "functions/askPalmetto/index.js",
-            dataSource: "bedrockDS"
-        }))
+        .authorization([a.allow.public()])  // Changed authorization syntax
+        .code('./functions/askPalmetto')    // Changed to use .code()
 });
 
 export type Schema = ClientSchema<typeof schema>;
